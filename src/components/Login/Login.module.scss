@@ -1,0 +1,68 @@
+.formContainer {
+	display: "flex";
+	flex-direction: "column";
+	align-items: center;
+	justify-content: "space-between";
+	min-height: 200px;
+}
+
+
+.paper {
+	margin-top: 1;
+	display: 'flex';
+	flex-direction: 'column';
+	align-items: 'center';
+}
+
+
+.avatar {
+	margin: 1;
+	background-color: 'secondary.main';
+}
+
+
+.infoText {
+	display: "flex";
+	justify-content: "center";
+	line-height: "2em";
+	font-size: "0.8rem";
+	color: 'error.main';
+}
+
+
+.largeProgressCircle {
+	margin-top: 5;
+	width: '75px!important';
+	height: '75px!important';
+	align-items: 'center';
+	justify-content: 'center';
+	color: "#11e011!important";
+}
+
+
+.form {
+	width: '100%';
+	margin-top: 1;
+}
+
+
+.submit {
+	margin: (1, 0, 1),
+}
+
+
+.loaderWrapper {
+	min-height: 200px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	margin-top: 5;
+	margin-bottom: 5;
+}
+
+
+.formTitle {
+	display: "flex";
+	justify-content: "center";
+}
