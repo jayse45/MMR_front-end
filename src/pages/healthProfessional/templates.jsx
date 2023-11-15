@@ -2,8 +2,7 @@ import { Box, Button, Divider, FormControl, Grid, MenuItem, Pagination, Select, 
 import { UrlHelper } from "../../utils/UrlHelper";
 import { useState } from "react";
 import Layout from "../../components/Layout/Layout";
-import NavListItems from "../admin/components/NavListItems";
-import styles from "../../pages/admin/Admin.scss"
+import NavListItems from "../healthProfessional/components/NavListItems";
 import LoadingCircle from "../../components/LoadingCircle";
 import CustomModal from "../../components/Modal/CustomModal";
 import useAuth from "../../hooks/useAuth";
@@ -14,9 +13,14 @@ import AddExerciseTemplatesForm from "../../components/ExerciseTemplate/AddExerc
 import ViewTemplateCard from "../../components/ExerciseTemplate/ViewTemplateCard";
 import { useEffect } from "react";
 import FetchManager from "../../utils/FetchManager";
+import ExercisePaginate from "./components/Exercise/ExercisePaginate";
+import ExercisePrescription from "./components/Exercise/ExercisePrescription";
 
 const TEMPLATES_URL = UrlHelper.createApiUrlPath("/api/templates/paginate?");
+const BODY_PARTS_URL = UrlHelper.createApiUrlPath("/api/bodyParts");
+
 const ExerciseTemplatePage = ()=>{
+	//const elements for getting, adding, deleting and viewing tempaltes using the bodyparts search 
     const [templates, setTemplates] = useState([]);
     const [bodyParts, setBodyParts] = useState([]);
     const [bodyPart, setBodyPart] = useState("");
@@ -29,6 +33,47 @@ const ExerciseTemplatePage = ()=>{
 	const [pageCount, setPageCount] = useState(1);
 	const limit = 10;
 	const { setOpenModal } = useAuth();
+	//const elements for selecting templates 
+	const [selectedExercises, setSelectedExercises] = useState([]);
+	const [step, setStep] = useState(0);
+
+	//Functions to select exercises
+	const getSelectedExercises = ()=>(selectedExercises)
+	const isSelected = (exercises) =>{
+		for (const temp of selectedExercises) {
+			if(exercises._id === temp._id) {
+				return true;
+			}
+		}
+		return false;
+	}
+	const addToSelectedExercises = (exercise) => {
+		const array = selectedExercises;
+		if (!isSelected(exercise)) {
+			array.push(exercise);
+			setSelectedExercises(array);
+		}
+	}
+	const removeFromSelectedExercises = (exercise_id) => {
+		const array = selectedExercises;
+		let index = -1;
+		for (let idx = 0; idx < array.length; idx++) {
+			if (array[idx].exercise === exercise_id) {
+				index = idx;
+				break;
+			}
+		}
+		if (index >= 0)
+			array.splice(index, 1);
+
+		setSelectedExercises(array)
+	}
+	const nextStep = () => {
+		setStep(step + 1);
+	}
+	const previousStep = () => {
+		setStep(step - 1);
+	}
 
     const handleModalClose = ()=>{
         setOpenModal(false);
@@ -71,11 +116,23 @@ const ExerciseTemplatePage = ()=>{
 				setLoading(false);
 			}
 		})
-	}, [reload,limit,page,query, bodyPart])
+	}, [reload,limit,page,query, bodyPart]);
+
+	useEffect(()=>{
+		setLoading(true);
+		FetchManager.fetch({
+			url:BODY_PARTS_URL,
+			success_cb: (res) =>{
+				setBodyParts(res.body);
+				setLoading(false);
+			}
+
+		})
+	}, [])
 
 	return(
 	<Layout navList={NavListItems}>
-			<Box component={"main"} className={styles.main} >
+			<Box component={"main"} >
 				<Box component={"section"} sx={{ display: "flex", justifyContent: "space-between" }} mb={1}>
 					<Grid container rowSpacing={1} spacing={2}>
 						<Grid item xs={12} sm={6} md={5} lg={5}>
@@ -111,7 +168,7 @@ const ExerciseTemplatePage = ()=>{
 						: <Grid container spacing={2} >
 							{templates.map(template => (
 								<Grid key={template._id} item xl={2} lg={3} md={4} sm={4} xs={6}>
-									<ViewTemplateCard modify exercise={template} editAction={editTemplate(template)} deleteAction={deleteTemplate(template)} />
+									<ViewTemplateCard modify template={template} editAction={editTemplate(template)} deleteAction={deleteTemplate(template)} />
 								</Grid>
 							))}
 						</Grid>
@@ -121,6 +178,14 @@ const ExerciseTemplatePage = ()=>{
 					<Pagination count={pageCount} size="large" page={page} onChange={handlePageChange} variant="outlined" shape="rounded" />
 				</Box>
 			</Box>
+			<Box sx={{ minHeight: "200px" }} className="SessionArea">
+				{step === 0 && <ExercisePaginate getSelectedExercises={getSelectedExercises} addToSelectedExercises={addToSelectedExercises} removeFromSelectedExercises={removeFromSelectedExercises} />}
+				{step === 1 && <ExercisePrescription exercises={selectedExercises} />}
+			</Box>
+			<Box sx={{ display: "flex", justifyContent: "space-around" }}>
+				{step > 0 && <Button onClick={previousStep}>Previous</Button>}
+				{step < 1 && <Button onClick={nextStep}>Next</Button>}
+				</Box>
 			<CustomModal onClose={handleModalClose}>
 				{modalContent === "edit" && <EditExerciseTemplatesForm templates={actionRow} success_cb={handleModalClose} />}
 				{modalContent === "delete" && <DeleteExerciseTemplatesForm success_cb={handleModalClose} templates={actionRow} />}

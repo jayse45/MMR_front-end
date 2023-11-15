@@ -139,6 +139,9 @@ const ExercisePage = () => {
 					<Pagination count={pageCount} size="large" page={page} onChange={handlePageChange} variant="outlined" shape="rounded" />
 				</Box>
 			</Box>
+			<Box>
+				
+			</Box>
 			<CustomModal onClose={handleModalClose}>
 				{modalContent === "edit" && <EditExerciseForm exercise={actionRow} success_cb={handleModalClose} />}
 				{modalContent === "delete" && <DeleteExerciseForm success_cb={handleModalClose} exercise={actionRow} />}
