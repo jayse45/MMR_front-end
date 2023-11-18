@@ -8,12 +8,14 @@ import SessionsPage from './sessions';
 import SubscriptionPage from './subscription';
 import NotFoundPage from '../../components/NotFoundPage';
 import Prescriptions from './prescriptions';
+import CoursePage from './presVideo';
 
 function PatientIndex() {
 	return (
 		<Routes>
 			<Route path="/" element={<Dashboard />} />
 			<Route path="/appointments" element={<AppointmentPage />} />
+			<Route path="/presvideo" element={<CoursePage />} />
 			<Route path="/prescription" element={<Prescriptions />} />
 			<Route path="/sessions/:session_id" element={<SessionPage />} />
 			<Route path="/sessions" element={<SessionsPage />} />
