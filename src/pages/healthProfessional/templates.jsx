@@ -1,4 +1,4 @@
-import { Box, Button, Divider, FormControl, Grid, MenuItem, Pagination, Select, TextField, Typography } from "@mui/material"
+import { Box, Button, Divider, FormControl, Grid, MenuItem, Pagination, Select, TextField, Typography, Card, Chip, Skeleton } from "@mui/material"
 import { UrlHelper } from "../../utils/UrlHelper";
 import { useState } from "react";
 import Layout from "../../components/Layout/Layout";
@@ -15,6 +15,25 @@ import { useEffect } from "react";
 import FetchManager from "../../utils/FetchManager";
 import ExercisePaginate from "./components/Exercise/ExercisePaginate";
 import ExercisePrescription from "./components/Exercise/ExercisePrescription";
+import { useNavigate } from 'react-router-dom';
+import AppBar from '@mui/material/AppBar';
+
+import CameraIcon from '@mui/icons-material/PhotoCamera';
+
+import CardActions from '@mui/material/CardActions';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
+import CssBaseline from '@mui/material/CssBaseline';
+import { spacing } from '@mui/system';
+
+import Stack from '@mui/material/Stack';
+
+import Toolbar from '@mui/material/Toolbar';
+
+import Container from '@mui/material/Container';
+import Link from '@mui/material/Link';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import TemplateCard from "./components/Exercise/TemplateCard";
 
 const TEMPLATES_URL = UrlHelper.createApiUrlPath("/api/templates/paginate?");
 const BODY_PARTS_URL = UrlHelper.createApiUrlPath("/api/bodyParts");
@@ -130,9 +149,59 @@ const ExerciseTemplatePage = ()=>{
 		})
 	}, [])
 
+
+
 	return(
 	<Layout navList={NavListItems}>
 			<Box component={"main"} >
+				<Box component={"section"}>
+					<Container>
+						<Typography gutterBottom variant="h5" component="h2">
+						Exercise Templates
+						</Typography>
+						
+
+					</Container>
+					<Container sx={{display: 'flex', flexDirection: 'row'}}>
+			<Container>
+						<Typography gutterBottom variant="h5" component="h2">
+						Available Templates
+						</Typography>
+
+			</Container>
+
+			<Container sx={{display:'flex', flexDirection:'column', alignItems:'flex-end'}}>
+				<Button sx={{ height: "1.2em" }} onClick={addTemplate}>Add Template</Button>
+
+			</Container>
+						
+						
+
+					</Container>
+					<TemplateCard />
+				
+				</Box>
+
+				<Box component={"section"}>
+					
+					<Container sx={{display: 'flex', flexDirection: 'row'}}>
+			<Container>
+						<Typography gutterBottom variant="h5" component="h2">
+						Your Templates
+						</Typography>
+
+			</Container>
+
+			
+						
+						
+
+					</Container>
+					<TemplateCard />
+				
+				</Box>
+
+
 				<Box component={"section"} sx={{ display: "flex", justifyContent: "space-between" }} mb={1}>
 					<Grid container rowSpacing={1} spacing={2}>
 						<Grid item xs={12} sm={6} md={5} lg={5}>
