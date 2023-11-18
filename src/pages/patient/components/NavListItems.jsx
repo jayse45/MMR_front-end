@@ -9,6 +9,7 @@ import {
 	Payment as PaymentIcon,
 	HourglassBottom as HourglassBottomIcon,
 	QuestionAnswer as QuestionAnswerIcon,
+	FitnessCenter as FitnessCenterIcon,
 } from '@mui/icons-material';
 const NavListItems = (
 	<Fragment>
@@ -23,6 +24,12 @@ const NavListItems = (
 				<CalendarMonthIcon />
 			</ListItemIcon>
 			<ListItemText primary="Appointments" />
+		</ListItemButton>
+		<ListItemButton href="/prescription">
+			<ListItemIcon>
+				<FitnessCenterIcon/>
+			</ListItemIcon>
+			<ListItemText primary="Prescription" />
 		</ListItemButton>
 		<ListItemButton href="/sessions">
 			<ListItemIcon>

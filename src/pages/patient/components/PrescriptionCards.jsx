@@ -18,7 +18,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 
 
-const TemplateCard = () =>{
+const PrescriptionCard = () =>{
 
     
 	// TODO remove, this demo shouldn't need to reset the theme.
@@ -80,8 +80,8 @@ const TemplateCard = () =>{
                     
                   </CardContent>
                   <CardActions>
-                    <Button size="small">Edit Template</Button>
-                    <Button size="small">Prescribe</Button>
+                    <Button size="small">Start Now</Button>
+                    
                   </CardActions>
                 </Card>
               </Grid>
@@ -96,7 +96,7 @@ const TemplateCard = () =>{
 
 };
 
-export default TemplateCard;
+export default PrescriptionCard;
 
 
 
