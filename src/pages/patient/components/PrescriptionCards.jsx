@@ -15,6 +15,7 @@ import Toolbar from '@mui/material/Toolbar';
 import Container from '@mui/material/Container';
 import Link from '@mui/material/Link';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { useNavigate } from 'react-router-dom';
 
 
 
@@ -27,6 +28,7 @@ const PrescriptionCard = () =>{
 
   
     const cards = [1, 2, 3, 4, 5, 6];
+    const navigate = useNavigate();
 
     return(
         <ThemeProvider theme={defaultTheme}>
@@ -80,7 +82,7 @@ const PrescriptionCard = () =>{
                     
                   </CardContent>
                   <CardActions>
-                    <Button size="small">Start Now</Button>
+                    <Button onClick={() => navigate("/presvideo")} size="small">Start Now</Button>
                     
                   </CardActions>
                 </Card>

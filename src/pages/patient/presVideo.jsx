@@ -71,7 +71,7 @@ function CoursePage() {
               <TableCell>Warm Up</TableCell>
               <TableCell>
                 
-                  <CheckCircleIcon color={getCheckIconColor()} />
+                  <CheckCircleIcon sx={{ color: '#008000' }} />
                 
               </TableCell>
             </TableRow>
