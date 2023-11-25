@@ -14,6 +14,8 @@ import DeleteExerciseTemplatesForm from '../../../components/ExerciseTemplate/De
 import ViewExerciseTemplatesForm from '../../../components/ExerciseTemplate/ViewExerciseTemplatesForm';
 import AddExerciseTemplatesForm from '../../../components/ExerciseTemplate/AddExerciseTemplatesForm';
 import CustomModal from '../../../components/Modal/CustomModal';
+import Layout from '../../../components/Layout/Layout';
+import NavListItems from './NavListItems';
 
 
 const TEMPLATES_URL = UrlHelper.createApiUrlPath("/api/templates/paginate?");
@@ -135,7 +137,9 @@ const TemplateForm = () => {
 	
 
 	return (
-		<Box>
+        <Layout navList={NavListItems}>
+
+<Box component={"main"}>
             <Container>
 
             <Typography  component="span" variant="subtitle2" mt={3} sx={{marginTop:'100px'}}>
@@ -235,6 +239,10 @@ const TemplateForm = () => {
             </Container>
 			
 		</Box>
+
+
+        </Layout>
+		
 	);
 }
 
