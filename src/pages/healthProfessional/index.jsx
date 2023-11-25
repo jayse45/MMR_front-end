@@ -13,6 +13,7 @@ import OnboardHealthProfessional from './components/OnboardHealthProfessional';
 import AppointmentPage from './appointments';
 import StorageManager from "../../utils/StorageManager";
 import ExerciseTemplatePage from "./templates";
+import TemplateForm from "./components/TemplateForm";
 
 function HealthProfessionalIndex() {
 	const onboarded = JSON.parse(StorageManager.get("onboarded"))
@@ -27,6 +28,7 @@ function HealthProfessionalIndex() {
 							<Route path="/sessions/:session_id" element={<SessionPage />} />
 							<Route path="/sessions" element={<SessionsPage />} />
 							<Route path="/patients" element={<PatientsPage />} />
+							<Route path="/template-form" element={<TemplateForm />} />
 							<Route path="/templates" element={<ExerciseTemplatePage/>}/>
 							{AuthenticationManager.getStoredUser().creator.type === "public" && <Route path="/appointments" element={<AppointmentPage />} />}
 							<Route path="/subscription" element={<SubscriptionPage />} />

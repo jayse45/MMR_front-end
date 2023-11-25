@@ -171,7 +171,7 @@ const ExerciseTemplatePage = ()=>{
 			</Container>
 
 			<Container sx={{display:'flex', flexDirection:'column', alignItems:'flex-end'}}>
-				<Button sx={{ height: "1.2em" }} onClick={addTemplate}>Add Template</Button>
+				<Button sx={{ height: "1.2em" }} href='/template-form'>Add Template</Button>
 
 			</Container>
 						
