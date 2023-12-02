@@ -37,7 +37,7 @@ const AddBodyPart = ({ onClose = () => {/*empty to prevent null calls*/ } }) => 
 					setLoading(false);
 				}
 			},
-			failure_cb: (res) => {
+			failure_cb: () => {
 				NotificationManager.notifyUser({ message: "Failed to create body part", type: "warning", toastId: 1 })
 				setLoading(false);
 			}

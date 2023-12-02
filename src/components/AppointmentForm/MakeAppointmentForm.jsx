@@ -67,7 +67,7 @@ const MakeAppointmentForm = () => {
 					NotificationManager.notifyUser({ type: "warning", message: "Failed to make appointment." })
 				}
 			},
-			failure_cb: (res) => {
+			failure_cb: () => {
 				setIsLoading(false);
 				NotificationManager.notifyUser({ type: "error", message: "Failed to make appointment." })
 			}

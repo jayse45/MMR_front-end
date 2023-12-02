@@ -12,8 +12,8 @@ const ViewTemplateCard = () => {
 						overflow: "hidden", whiteSpace: "nowrap",
 						maxWidth: "200px"
           }
-        } variant="subtitle1" title={template.title}>
-          {template.title}
+        } variant="subtitle1">
+         
         </Typography>}
       />
 

@@ -63,7 +63,7 @@ const RequestAppointmentForm = () => {
 					NotificationManager.notifyUser({ type: "warning", message: "Failed to make request." })
 				}
 			},
-			failure_cb: (res) => {
+			failure_cb: () => {
 				setIsLoading(false);
 				NotificationManager.notifyUser({ type: "warning", message: "Failed to make request." })
 			}

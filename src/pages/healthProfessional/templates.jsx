@@ -1,4 +1,4 @@
-import { Box, Button, Divider, FormControl, Grid, MenuItem, Pagination, Select, TextField, Typography, Card, Chip, Skeleton } from "@mui/material"
+import { Box, Button, Divider, FormControl, Grid, MenuItem, Pagination, Select, TextField, Typography } from "@mui/material"
 import { UrlHelper } from "../../utils/UrlHelper";
 import { useState } from "react";
 import Layout from "../../components/Layout/Layout";
@@ -15,35 +15,19 @@ import { useEffect } from "react";
 import FetchManager from "../../utils/FetchManager";
 import ExercisePaginate from "./components/Exercise/ExercisePaginate";
 import ExercisePrescription from "./components/Exercise/ExercisePrescription";
-import { useNavigate } from 'react-router-dom';
-import AppBar from '@mui/material/AppBar';
-
-import CameraIcon from '@mui/icons-material/PhotoCamera';
-
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import CssBaseline from '@mui/material/CssBaseline';
-import { spacing } from '@mui/system';
-
-import Stack from '@mui/material/Stack';
-
-import Toolbar from '@mui/material/Toolbar';
-
 import Container from '@mui/material/Container';
-import Link from '@mui/material/Link';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+
 import TemplateCard from "./components/Exercise/TemplateCard";
 
 const TEMPLATES_URL = UrlHelper.createApiUrlPath("/api/templates/paginate?");
 const BODY_PARTS_URL = UrlHelper.createApiUrlPath("/api/bodyParts");
 
-const ExerciseTemplatePage = ()=>{
+const ExerciseTemplatePage = () => {
 	//const elements for getting, adding, deleting and viewing tempaltes using the bodyparts search 
-    const [templates, setTemplates] = useState([]);
-    const [bodyParts, setBodyParts] = useState([]);
-    const [bodyPart, setBodyPart] = useState("");
-    const[loading, setLoading] = useState(false);
+	const [templates, setTemplates] = useState([]);
+	const [bodyParts, setBodyParts] = useState([]);
+	const [bodyPart, setBodyPart] = useState("");
+	const [loading, setLoading] = useState(false);
 	const [reload, setReload] = useState(false);
 	const [modalContent, setModalContent] = useState("");
 	const [actionRow, setActionRow] = useState("");
@@ -57,10 +41,10 @@ const ExerciseTemplatePage = ()=>{
 	const [step, setStep] = useState(0);
 
 	//Functions to select exercises
-	const getSelectedExercises = ()=>(selectedExercises)
-	const isSelected = (exercises) =>{
+	const getSelectedExercises = () => (selectedExercises)
+	const isSelected = (exercises) => {
 		for (const temp of selectedExercises) {
-			if(exercises._id === temp._id) {
+			if (exercises._id === temp._id) {
 				return true;
 			}
 		}
@@ -94,18 +78,18 @@ const ExerciseTemplatePage = ()=>{
 		setStep(step - 1);
 	}
 
-    const handleModalClose = ()=>{
-        setOpenModal(false);
-        setReload(!reload)
-    }
-    const deleteTemplate = (template) =>{
-        return ()=>{
-            setModalContent("delete");
-            setOpenModal(true);
-            setActionRow(template)
-        }
-    }
-    const editTemplate = (exercise) => {
+	const handleModalClose = () => {
+		setOpenModal(false);
+		setReload(!reload)
+	}
+	const deleteTemplate = (template) => {
+		return () => {
+			setModalContent("delete");
+			setOpenModal(true);
+			setActionRow(template)
+		}
+	}
+	const editTemplate = (exercise) => {
 		return () => {
 			setModalContent("edit");
 			setOpenModal(true);
@@ -116,32 +100,32 @@ const ExerciseTemplatePage = ()=>{
 		setModalContent("add");
 		setOpenModal(true);
 	}
-    const handlePageChange = (evt, value) =>{
-        setPage(value);
-    }
-    const handleSearchChange = (evt) => {
+	const handlePageChange = (evt, value) => {
+		setPage(value);
+	}
+	const handleSearchChange = (evt) => {
 		setQuery(evt.target.value)
 	}
-    const handleBodyPartChange = (evt) => {
+	const handleBodyPartChange = (evt) => {
 		setBodyPart(evt.target.value);
 	}
-	useEffect(()=>{
+	useEffect(() => {
 		setLoading(true);
 		FetchManager.fetch({
-			url: `${TEMPLATES_URL}page=${page -1}&limit=${limit}&query=${query}&bodyPart=${bodyPart}`,
-			success_cb: (res)=>{
+			url: `${TEMPLATES_URL}page=${page - 1}&limit=${limit}&query=${query}&bodyPart=${bodyPart}`,
+			success_cb: (res) => {
 				setTemplates(res.body);
 				setPageCount(res.pagination.pages)
 				setLoading(false);
 			}
 		})
-	}, [reload,limit,page,query, bodyPart]);
+	}, [reload, limit, page, query, bodyPart]);
 
-	useEffect(()=>{
+	useEffect(() => {
 		setLoading(true);
 		FetchManager.fetch({
-			url:BODY_PARTS_URL,
-			success_cb: (res) =>{
+			url: BODY_PARTS_URL,
+			success_cb: (res) => {
 				setBodyParts(res.body);
 				setLoading(false);
 			}
@@ -151,54 +135,48 @@ const ExerciseTemplatePage = ()=>{
 
 
 
-	return(
-	<Layout navList={NavListItems}>
+	return (
+		<Layout navList={NavListItems}>
 			<Box component={"main"} >
 				<Box component={"section"}>
 					<Container>
 						<Typography gutterBottom variant="h5" component="h2">
-						Exercise Templates
+							Exercise Templates
 						</Typography>
-						
+
 
 					</Container>
-					<Container sx={{display: 'flex', flexDirection: 'row'}}>
-			<Container>
-						<Typography gutterBottom variant="h5" component="h2">
-						Available Templates
-						</Typography>
+					<Container sx={{ display: 'flex', flexDirection: 'row' }}>
+						<Container>
+							<Typography gutterBottom variant="h5" component="h2">
+								Available Templates
+							</Typography>
 
-			</Container>
+						</Container>
 
-			<Container sx={{display:'flex', flexDirection:'column', alignItems:'flex-end'}}>
-				<Button sx={{ height: "1.2em" }} href='/template-form'>Add Template</Button>
+						<Container sx={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end' }}>
+							<Button sx={{ height: "1.2em" }} href='/template-form'>Add Template</Button>
 
-			</Container>
-						
-						
+						</Container>
 
 					</Container>
 					<TemplateCard />
-				
+
 				</Box>
 
 				<Box component={"section"}>
-					
-					<Container sx={{display: 'flex', flexDirection: 'row'}}>
-			<Container>
-						<Typography gutterBottom variant="h5" component="h2">
-						Your Templates
-						</Typography>
 
-			</Container>
+					<Container sx={{ display: 'flex', flexDirection: 'row' }}>
+						<Container>
+							<Typography gutterBottom variant="h5" component="h2">
+								Your Templates
+							</Typography>
 
-			
-						
-						
+						</Container>
 
 					</Container>
 					<TemplateCard />
-				
+
 				</Box>
 
 
@@ -223,7 +201,7 @@ const ExerciseTemplatePage = ()=>{
 									<MenuItem key={0} value={""} selected>ALL</MenuItem>
 									{bodyParts.map(item => (<MenuItem key={item._id} value={item._id}>{item.name.toLocaleUpperCase()}</MenuItem>))}
 								</Select>
-							</FormControl> 
+							</FormControl>
 						</Grid>
 						<Grid item xs={12} md={3} sm={3} lg={2} display={"flex"} justifyContent={"flex-start"} alignItems={"flex-end"}>
 							<Button sx={{ height: "1.2em" }} onClick={addTemplate}>Add Template</Button>
@@ -254,14 +232,14 @@ const ExerciseTemplatePage = ()=>{
 			<Box sx={{ display: "flex", justifyContent: "space-around" }}>
 				{step > 0 && <Button onClick={previousStep}>Previous</Button>}
 				{step < 1 && <Button onClick={nextStep}>Next</Button>}
-				</Box>
+			</Box>
 			<CustomModal onClose={handleModalClose}>
 				{modalContent === "edit" && <EditExerciseTemplatesForm templates={actionRow} success_cb={handleModalClose} />}
 				{modalContent === "delete" && <DeleteExerciseTemplatesForm success_cb={handleModalClose} templates={actionRow} />}
 				{modalContent === "view" && <ViewExerciseTemplatesForm templates={actionRow} />}
 				{modalContent === "add" && <AddExerciseTemplatesForm success_cb={handleModalClose} />}
 			</CustomModal>
-		</Layout> 
-    )
+		</Layout>
+	)
 }
 export default ExerciseTemplatePage;
