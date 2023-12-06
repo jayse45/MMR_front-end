@@ -1,17 +1,9 @@
-import { Box, Button } from "@mui/material"
-import ExerciseInstructionForm from "./ExerciseInstructionForm";
+import React from 'react'
 
-const ExerciseTemplate =()=>{
-    return(
-        <Box>
-
-            <Box>
-                Hello 
-            </Box>
-            <Box>
-                <Button>Save</Button>
-            </Box>
-        </Box>
-    )
+const ExerciseTemplate = () => {
+  return (
+    <div>ExerciseTemplate</div>
+  )
 }
-export default ExerciseTemplate;
+
+export default ExerciseTemplate

@@ -1,17 +1,11 @@
-import { Box, Button, Divider, FormControl, Grid, MenuItem, Pagination, Select, TextField, Typography, Card, Chip, Skeleton } from "@mui/material"
-
-
-
+import { Box, Button, Divider, FormControl, Grid, MenuItem, Pagination, Select, TextField, Typography, Card, Chip, Skeleton } from "@mui/material";
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import CssBaseline from '@mui/material/CssBaseline';
 import { spacing } from '@mui/system';
-
 import Stack from '@mui/material/Stack';
-
 import Toolbar from '@mui/material/Toolbar';
-
 import Container from '@mui/material/Container';
 import Link from '@mui/material/Link';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
@@ -55,12 +49,12 @@ const TemplateCard = () =>{
                   />
                   <CardContent sx={{ flexGrow: 1 }}>
                     <Typography gutterBottom variant="h5" component="h2">
-                      Template Heading
+                      {}
                     </Typography>
 					<Container disableGutters sx={{display: 'flex', flexDirection: 'row' }}>
 						<Container disableGutters sx={{display:'flex', flexDirection:'row', justifyContent:'flex-end' }}>
 							<Typography sx={{fontSize:'12px'}}>
-								Temp. Description would be here
+								{}
 							</Typography>
 
 						</Container>

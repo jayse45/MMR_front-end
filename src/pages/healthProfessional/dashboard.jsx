@@ -8,7 +8,6 @@ import NavListItems from './components/NavListItems';
 import { UrlHelper } from '../../utils/UrlHelper';
 import { PermContactCalendar as PermContactCalendarIcon } from '@mui/icons-material';
 import FetchManager from '../../utils/FetchManager';
-import ExerciseTemplate from './components/Exercise/ExerciseTemplate';
 
 const RECENT_SESSION_URL = UrlHelper.createApiUrlPath("/api/sessions/users/paginate?limit=10&page=0");
 const SESSION_COUNT_URL = UrlHelper.createApiUrlPath("/api/sessions/users/count");
@@ -63,7 +62,6 @@ const DashboardPage = () => {
 					</Grid>
 				</Grid>
 			</Box>
-			<Box><ExerciseTemplate/></Box>
 		</Box>
 	</Layout>
 }

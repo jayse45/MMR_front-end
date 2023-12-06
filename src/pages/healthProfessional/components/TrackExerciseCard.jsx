@@ -131,7 +131,7 @@ const TrackExerciseCard = ({ exercise, prescription }) => {
 						}
 						{modalContent === "patientComment" &&
 							<Box sx={{ display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
-								<Typography variant='subtitle2'>Patient's Comment</Typography>
+								<Typography variant='subtitle2'>Patient&rsquo;s Comment</Typography>
 								<Box sx={{ marginTop: 2, marginBottom: 3 }}>
 									<TextField disabled mb={2} rows={2} fullWidth label="Comment" multiline name="patientComment" value={prescription.patientComment ?? " "} />
 								</Box>

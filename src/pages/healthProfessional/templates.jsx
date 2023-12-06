@@ -133,8 +133,6 @@ const ExerciseTemplatePage = () => {
 		})
 	}, [])
 
-
-
 	return (
 		<Layout navList={NavListItems}>
 			<Box component={"main"} >
@@ -143,40 +141,30 @@ const ExerciseTemplatePage = () => {
 						<Typography gutterBottom variant="h5" component="h2">
 							Exercise Templates
 						</Typography>
-
-
 					</Container>
 					<Container sx={{ display: 'flex', flexDirection: 'row' }}>
 						<Container>
 							<Typography gutterBottom variant="h5" component="h2">
 								Available Templates
 							</Typography>
-
 						</Container>
-
 						<Container sx={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end' }}>
-							<Button sx={{ height: "1.2em" }} href='/template-form'>Add Template</Button>
-
+							<Button sx={{ height: "1.2em" }} href='/templateform'>Add Template</Button>
 						</Container>
 
 					</Container>
 					<TemplateCard />
 
 				</Box>
-
 				<Box component={"section"}>
-
 					<Container sx={{ display: 'flex', flexDirection: 'row' }}>
 						<Container>
 							<Typography gutterBottom variant="h5" component="h2">
 								Your Templates
 							</Typography>
-
 						</Container>
-
 					</Container>
 					<TemplateCard />
-
 				</Box>
 
 
@@ -225,14 +213,14 @@ const ExerciseTemplatePage = () => {
 					<Pagination count={pageCount} size="large" page={page} onChange={handlePageChange} variant="outlined" shape="rounded" />
 				</Box>
 			</Box>
-			<Box sx={{ minHeight: "200px" }} className="SessionArea">
+			{/* <Box sx={{ minHeight: "200px" }} className="SessionArea">
 				{step === 0 && <ExercisePaginate getSelectedExercises={getSelectedExercises} addToSelectedExercises={addToSelectedExercises} removeFromSelectedExercises={removeFromSelectedExercises} />}
 				{step === 1 && <ExercisePrescription exercises={selectedExercises} />}
-			</Box>
-			<Box sx={{ display: "flex", justifyContent: "space-around" }}>
+			</Box> */}
+			{/* <Box sx={{ display: "flex", justifyContent: "space-around" }}>
 				{step > 0 && <Button onClick={previousStep}>Previous</Button>}
 				{step < 1 && <Button onClick={nextStep}>Next</Button>}
-			</Box>
+			</Box> */}
 			<CustomModal onClose={handleModalClose}>
 				{modalContent === "edit" && <EditExerciseTemplatesForm templates={actionRow} success_cb={handleModalClose} />}
 				{modalContent === "delete" && <DeleteExerciseTemplatesForm success_cb={handleModalClose} templates={actionRow} />}

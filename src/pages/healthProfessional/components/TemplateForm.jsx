@@ -28,8 +28,8 @@ const TemplateForm = () => {
     //const elements for getting, adding, deleting and viewing tempaltes using the bodyparts search 
     const [templates, setTemplates] = useState([]);
     const [bodyParts, setBodyParts] = useState([]);
+	const[loading, setLoading] = useState(false);
     const [bodyPart, setBodyPart] = useState("");
-    const[loading, setLoading] = useState(false);
 	const [reload, setReload] = useState(false);
 	const [modalContent, setModalContent] = useState("");
 	const [actionRow, setActionRow] = useState("");
@@ -138,41 +138,29 @@ const TemplateForm = () => {
 
 	return (
         <Layout navList={NavListItems}>
-
-<Box component={"main"}>
+			<Box component={"main"}>
             <Container>
-
-            <Typography  component="span" variant="subtitle2" mt={3} sx={{marginTop:'100px'}}>
+            	<Typography  component="span" variant="subtitle2" mt={3} sx={{marginTop:'100px'}}>
                 Add New Template
-				
                 </Typography>
                 <Box component={"form"} className='form' method="POST" >
                     <Typography color={"red"} variant="body2" className='infoText'></Typography>
-                    <TextField variant="outlined" margin="normal"  required fullWidth id="name" label="Template Name" name="excercise-name"
-                        type="text"  
-                    />
-                    <TextField  variant="outlined" margin="normal" required fullWidth name="password" label="Template Description"
-                        type="text" id="description" 
-                    />
-                    
-    
-                    
-                    
+                    <TextField variant="outlined" margin="normal"  required fullWidth id="name" label="Template Name" name="excercise-name"type="text"  />
+                    <TextField  variant="outlined" margin="normal" required fullWidth name="password" label="Template Description"type="text" id="description" />
+               
                     <Box sx={{ display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
-
-                    <Typography  component="span" variant="subtitle2" mt={3} sx={{marginTop:'100px'}}>
-                Warm up Excercises
-				
-                </Typography>
+						<Typography  component="span" variant="subtitle2" mt={3} sx={{marginTop:'100px'}}>
+							Warm up Excercises
+							</Typography>
                     
                     <Box sx={{ minHeight: "200px" }} className="SessionArea">
 				{step === 0 && <ExercisePaginate getSelectedExercises={getSelectedExercises} addToSelectedExercises={addToSelectedExercises} removeFromSelectedExercises={removeFromSelectedExercises} />}
 				{step === 1 && <ExercisePrescription exercises={selectedExercises} />}
-			</Box>
-			{/* <Box sx={{ display: "flex", justifyContent: "space-around" }}>
+				</Box>
+			<Box sx={{ display: "flex", justifyContent: "space-around" }}>
 				{step > 0 && <Button onClick={previousStep}>Previous</Button>}
 				{step < 1 && <Button onClick={nextStep}>Next</Button>}
-				</Box> */}
+				</Box>
 			<CustomModal onClose={handleModalClose}>
 				{modalContent === "edit" && <EditExerciseTemplatesForm templates={actionRow} success_cb={handleModalClose} />}
 				{modalContent === "delete" && <DeleteExerciseTemplatesForm success_cb={handleModalClose} templates={actionRow} />}
@@ -189,15 +177,14 @@ const TemplateForm = () => {
                 Main Excercises
 				
                 </Typography>
-                    
                     <Box sx={{ minHeight: "200px" }} className="SessionArea">
 				{step === 0 && <ExercisePaginate getSelectedExercises={getSelectedExercises} addToSelectedExercises={addToSelectedExercises} removeFromSelectedExercises={removeFromSelectedExercises} />}
 				{step === 1 && <ExercisePrescription exercises={selectedExercises} />}
 			</Box>
-			{/* <Box sx={{ display: "flex", justifyContent: "space-around" }}>
+			<Box sx={{ display: "flex", justifyContent: "space-around" }}>
 				{step > 0 && <Button onClick={previousStep}>Previous</Button>}
 				{step < 1 && <Button onClick={nextStep}>Next</Button>}
-				</Box> */}
+				</Box>
 			<CustomModal onClose={handleModalClose}>
 				{modalContent === "edit" && <EditExerciseTemplatesForm templates={actionRow} success_cb={handleModalClose} />}
 				{modalContent === "delete" && <DeleteExerciseTemplatesForm success_cb={handleModalClose} templates={actionRow} />}
@@ -219,10 +206,10 @@ const TemplateForm = () => {
 				{step === 0 && <ExercisePaginate getSelectedExercises={getSelectedExercises} addToSelectedExercises={addToSelectedExercises} removeFromSelectedExercises={removeFromSelectedExercises} />}
 				{step === 1 && <ExercisePrescription exercises={selectedExercises} />}
 			</Box>
-			{/* <Box sx={{ display: "flex", justifyContent: "space-around" }}>
+			<Box sx={{ display: "flex", justifyContent: "space-around" }}>
 				{step > 0 && <Button onClick={previousStep}>Previous</Button>}
 				{step < 1 && <Button onClick={nextStep}>Next</Button>}
-				</Box> */}
+				</Box>
 			<CustomModal onClose={handleModalClose}>
 				{modalContent === "edit" && <EditExerciseTemplatesForm templates={actionRow} success_cb={handleModalClose} />}
 				{modalContent === "delete" && <DeleteExerciseTemplatesForm success_cb={handleModalClose} templates={actionRow} />}
@@ -237,11 +224,8 @@ const TemplateForm = () => {
                 </Box>
 
             </Container>
-			
-		</Box>
-
-
-        </Layout>
+			</Box>
+		</Layout>
 		
 	);
 }
