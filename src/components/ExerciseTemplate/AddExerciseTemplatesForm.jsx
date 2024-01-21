@@ -10,6 +10,7 @@ import {
   StepLabel,
   Step,
   MenuItem,
+  LinearProgress,
   Container,
 } from '@mui/material';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
@@ -21,14 +22,15 @@ import styles from '../Exercise/AddExerciseForm.scss';
 import Layout from '../Layout/Layout';
 import NavListItems from '../../pages/healthProfessional/components/NavListItems';
 import ExercisePaginate from '../../pages/healthProfessional/components/Exercise/ExercisePaginate';
-import ExercisePrescription from '../../pages/healthProfessional/components/Exercise/ExercisePrescription';
+import ExerciseTemplatePrescription from '../../pages/healthProfessional/components/Exercise/ExerciseTemplatePrescription';
 import CustomModal from '../Modal/CustomModal';
 import EditExerciseTemplatesForm from './EditExerciseTemplatesForm';
 import DeleteExerciseTemplatesForm from './DeleteExerciseTemplatesForm';
 import ViewExerciseTemplatesForm from './ViewExerciseTemplatesForm';
+
 import useAuth from '../../hooks/useAuth';
 
-const EXERCISE_TEMPLATES_URL = UrlHelper.createApiUrlPath('/api/exerciseTemplates');
+const EXERCISE_TEMPLATES_URL = UrlHelper.createApiUrlPath('/api/templates/text');
 const EXERCISES_URL = UrlHelper.createApiUrlPath('/api/exercises/text');
 const BODY_PARTS_URL = UrlHelper.createApiUrlPath('/api/bodyParts');
 
@@ -42,13 +44,16 @@ const AddExerciseTemplateForm = ({ success_cb }) => {
 	const [reload, setReload] = useState(false);
   const [exerciseTemplate, setExerciseTemplate] = useState({});
   const [selectedExercises, setSelectedExercises] = useState([]);
+  const [selectedWarmupExercises, setSelectedWarmupExercises] = useState([]);
+  const [selectedMainExercises, setSelectedMainExercises] = useState([]);
+  const [selectedCooldownExercises, setSelectedCooldownExercises] = useState([]);
   const [page, setPage] = useState(1);
 	const [query, setQuery] = useState("");
 	const [pageCount, setPageCount] = useState(1);
 	const limit = 10;
   const [bodyParts, setBodyParts] = useState([]);
   const [formData, setFormData] = useState({
-    templateName: '',
+    templateName: "",
     templateDescription: "",
     warmup: [],
     main: [],
@@ -122,8 +127,36 @@ const AddExerciseTemplateForm = ({ success_cb }) => {
       return false;
     }
   };
-    //This si to handle the moving from step to step
-  const nextStepHandler = async (evt) => {
+  const saveData = (template) => {
+		setLoading(true);
+		FetchManager.fetch({
+			url: `${EXERCISE_TEMPLATES_URL}${template._id}/templates`,
+			method: "PUT",
+			body: formData,
+			success_cb: (res) => {
+				NotificationManager.notifyUser({message: "Prescription saved successfully", type: "success"})
+				setLoading(false);
+			},
+			failure_cb: (res) => {
+				setLoading(false);
+				NotificationManager.notifyUser({ message: "Failed to save prescription", type: "warning" })
+			}
+		})
+
+	}
+    //This is to handle the moving from step to step
+    const nextStepHandler = async (evt) => {
+      setIsLoading(true);
+      if (step === 0) {
+        await handleTextSubmission(evt);
+      }
+      if (step < 1) {
+        setStep(step + 1);
+      }
+      setIsLoading(false);
+    };
+    // Warmup
+  const nextStepWarmupHandler = async (evt) => {
     setIsLoading(true);
     if (step === 0) {
       await handleTextSubmission(evt);
@@ -133,18 +166,66 @@ const AddExerciseTemplateForm = ({ success_cb }) => {
     }
     setIsLoading(false);
   };
-  const previousStepHandler = async (evt) => {
+
+  const previousStepWarmupHandler = async (evt) => {
     setIsLoading(true);
     if (step === 0) {
       await handleTextSubmission(evt);
     }
-    if (step < 1) {
+    if (step > 0) {
       setStep(step - 1);
     }
     setIsLoading(false);
   };
 
-  //this is for the selceted exercises
+  //Main
+  const nextStepMainHandler = async (evt) => {
+    setIsLoading(true);
+    if (step === 0) {
+      await handleTextSubmission(evt);
+    }
+    if (step < 1) {
+      setStep(step + 1);
+    }
+    setIsLoading(false);
+  };
+
+  const previousStepMainHandler = async (evt) => {
+    setIsLoading(true);
+    if (step === 0) {
+      await handleTextSubmission(evt);
+    }
+    if (step > 0) {
+      setStep(step - 1);
+    }
+    setIsLoading(false);
+  };
+  const nextStepCooldownHandler = async (evt) => {
+    setIsLoading(true);
+    if (step === 0) {
+      await handleTextSubmission(evt);
+    }
+    if (step < 1) {
+      setStep(step + 1);
+    }
+    setIsLoading(false);
+  };
+
+  const previousStepCooldownHandler = async (evt) => {
+    setIsLoading(true);
+    if (step === 0) {
+      await handleTextSubmission(evt);
+    }
+    if (step > 0) {
+      setStep(step - 1);
+    }
+    setIsLoading(false);
+  };
+
+
+  
+  
+ 
   const getSelectedExercises = ()=>(selectedExercises)
 	const isSelected = (exercises) =>{
 		for (const temp of selectedExercises) {
@@ -154,13 +235,31 @@ const AddExerciseTemplateForm = ({ success_cb }) => {
 		}
 		return false;
 	}
-	const addToSelectedExercises = (exercise) => {
+ 
+	const addToSelectedMainExercises = (exercise) => {
 		const array = selectedExercises;
 		if (!isSelected(exercise)) {
 			array.push(exercise);
-			setSelectedExercises(array);
+			setSelectedMainExercises(array);
 		}
 	}
+ 
+	const addToSelectedWarmupExercises = (exercise) => {
+		const array = selectedExercises;
+		if (!isSelected(exercise)) {
+			array.push(exercise);
+			setSelectedWarmupExercises(array);
+		}
+	}
+ 
+	const addToSelectedCooldownExercises = (exercise) => {
+		const array = selectedExercises;
+		if (!isSelected(exercise)) {
+			array.push(exercise);
+			setSelectedCooldownExercises(array);
+		}
+	}
+
 	const removeFromSelectedExercises = (exercise_id) => {
 		const array = selectedExercises;
 		let index = -1;
@@ -186,6 +285,7 @@ const AddExerciseTemplateForm = ({ success_cb }) => {
 			}
 		})
 	}, [reload,limit,page,query, bodyPart]);
+  
   useEffect(() => {
     FetchManager.fetch({
       url: BODY_PARTS_URL,
@@ -203,14 +303,8 @@ const AddExerciseTemplateForm = ({ success_cb }) => {
           <Typography  component="span" variant="subtitle2" mt={3} sx={{marginTop:'100px'}}>
             Add Exercise Template
           </Typography>
-          {/* <Stepper activeStep={step} mb={2}>
-            <Step key={'text'}>
-              <StepLabel>{'Text'}</StepLabel>
-            </Step>
-          </Stepper> */}
-          <Fragment>
+          <Box className="form" method="POST">
             <Box p={3} sx={{ minWidth: '500px' }}>
-              {step === 0 && (
                 <Box>
                   <Box className={styles.formInput}>
                     <FormControl fullWidth>
@@ -253,19 +347,30 @@ const AddExerciseTemplateForm = ({ success_cb }) => {
                   </Box>
                   <Box sx={{ display: "flex", flexDirection: "column", justifyContent: "space-between" }} className={styles.formInput} mt={1}>
                     <FormControl fullWidth>
-                      <FormLabel>Warm up Excercises</FormLabel>
+                      <FormLabel>
+                        <Typography component="span" variant='subtitle2' mt={3} sx={{marginTop: '100px'}}>
+                          Warm up Excercises 
+                        </Typography>
+                      </FormLabel>
                       {/* Add a component or logic for selecting exercises for warm-up */}
                       {/* For example, you might use a MultiSelect component */}
                       {/* For simplicity, let's assume that you have a component called ExerciseSelector */}
                       {/* that handles the selection of exercises */}
                         <Box sx={{ minHeight: "200px" }} className="SessionArea">
-                          {step === 0 && <ExercisePaginate getSelectedExercises={getSelectedExercises} addToSelectedExercises=               {addToSelectedExercises} removeFromSelectedExercises={removeFromSelectedExercises} />}
-                          {step === 1 && <ExercisePrescription exercises={selectedExercises} />}
+                          {step === 0 && <ExercisePaginate getSelectedExercises={getSelectedExercises} addToSelectedExercises={addToSelectedWarmupExercises} removeFromSelectedExercises={removeFromSelectedExercises} />}
+                          {step === 1 && <ExerciseTemplatePrescription exercises={selectedWarmupExercises} />}
                         </Box>
                         <Box sx={{ display: "flex", justifyContent: "space-around" }}>
-                          {step > 0 && <Button onClick={previousStepHandler}>Previous</Button>}
-                          {step < 1 && <Button onClick={nextStepHandler}>Next</Button>}
+                          {step > 0 && <Button onClick={previousStepWarmupHandler}>Previous</Button>}
+                          {step < 1 && <Button onClick={nextStepWarmupHandler}>Next</Button>}
                         </Box>
+                        <CustomModal onClose={handleModalClose}>
+                          {modalContent === "edit" && <EditExerciseTemplatesForm templates={actionRow} success_cb={handleModalClose} />}
+                          {modalContent === "delete" && <DeleteExerciseTemplatesForm success_cb={handleModalClose} templates={actionRow} />}
+                          {modalContent === "view" && <ViewExerciseTemplatesForm templates={actionRow} />}
+                          {/* {modalContent === "add" && <AddExerciseTemplatesForm success_cb={handleModalClose} />} */}
+                        </CustomModal>
+                        
                     </FormControl>
                   </Box>
 
@@ -275,13 +380,19 @@ const AddExerciseTemplateForm = ({ success_cb }) => {
                     <FormControl fullWidth>
                       <FormLabel>Main Exercises</FormLabel>
                       <Box sx={{ minHeight: "200px" }} className="SessionArea">
-                          {step === 0 && <ExercisePaginate getSelectedExercises={getSelectedExercises} addToSelectedExercises=               {addToSelectedExercises} removeFromSelectedExercises={removeFromSelectedExercises} />}
-                          {step === 1 && <ExercisePrescription exercises={selectedExercises} />}
+                          {step === 0 && <ExercisePaginate getSelectedExercises={getSelectedExercises} addToSelectedExercises={addToSelectedMainExercises} removeFromSelectedExercises={removeFromSelectedExercises} />}
+                          {step === 1 && <ExerciseTemplatePrescription exercises={selectedMainExercises} />}
                         </Box>
                         <Box sx={{ display: "flex", justifyContent: "space-around" }}>
-                          {step > 0 && <Button onClick={previousStepHandler}>Previous</Button>}
-                          {step < 1 && <Button onClick={nextStepHandler}>Next</Button>}
+                          {step > 0 && <Button onClick={previousStepMainHandler}>Previous</Button>}
+                          {step < 1 && <Button onClick={nextStepMainHandler}>Next</Button>}
                         </Box>
+                        <CustomModal onClose={handleModalClose}>
+                          {modalContent === "edit" && <EditExerciseTemplatesForm templates={actionRow} success_cb={handleModalClose} />}
+                          {modalContent === "delete" && <DeleteExerciseTemplatesForm success_cb={handleModalClose} templates={actionRow} />}
+                          {modalContent === "view" && <ViewExerciseTemplatesForm templates={actionRow} />}
+                          {/* {modalContent === "add" && <AddExerciseTemplatesForm success_cb={handleModalClose} />} */}
+                        </CustomModal>
                     </FormControl>
                   </Box>
 
@@ -290,36 +401,26 @@ const AddExerciseTemplateForm = ({ success_cb }) => {
                     <FormControl fullWidth>
                       <FormLabel>Cooldown Exercises</FormLabel>
                       <Box sx={{ minHeight: "200px" }} className="SessionArea">
-                          {step === 0 && <ExercisePaginate getSelectedExercises={getSelectedExercises} addToSelectedExercises=               {addToSelectedExercises} removeFromSelectedExercises={removeFromSelectedExercises} />}
-                          {step === 1 && <ExercisePrescription exercises={selectedExercises} />}
+                          {step === 0 && <ExercisePaginate getSelectedExercises={getSelectedExercises} addToSelectedExercises={addToSelectedCooldownExercises} removeFromSelectedExercises={removeFromSelectedExercises} />}
+                          {step === 1 && <ExerciseTemplatePrescription exercises={selectedCooldownExercises} />}
                         </Box>
                         <Box sx={{ display: "flex", justifyContent: "space-around" }}>
-                          {step > 0 && <Button onClick={previousStepHandler}>Previous</Button>}
-                          {step < 1 && <Button onClick={nextStepHandler}>Next</Button>}
+                          {step > 0 && <Button onClick={previousStepCooldownHandler}>Previous</Button>}
+                          {step < 1 && <Button onClick={nextStepCooldownHandler}>Next</Button>}
                         </Box>
                         <CustomModal onClose={handleModalClose}>
-				{modalContent === "edit" && <EditExerciseTemplatesForm templates={actionRow} success_cb={handleModalClose} />}
-				{modalContent === "delete" && <DeleteExerciseTemplatesForm success_cb={handleModalClose} templates={actionRow} />}
-				{modalContent === "view" && <ViewExerciseTemplatesForm templates={actionRow} />}
-			</CustomModal>
+                          {modalContent === "edit" && <EditExerciseTemplatesForm templates={actionRow} success_cb={handleModalClose} />}
+                          {modalContent === "delete" && <DeleteExerciseTemplatesForm success_cb={handleModalClose} templates={actionRow} />}
+                          {modalContent === "view" && <ViewExerciseTemplatesForm templates={actionRow} />}
+                        </CustomModal>
                     </FormControl>
                   </Box>
                 </Box>
-              )}
             </Box>
-          </Fragment>
-          <Box mt={2} px={3}>
-          <Box my={3} sx={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center" }}>
-							<CheckCircleIcon sx={{ color: "green", width: "100px", height: "100px" }} />
-							<Typography variant="subtitle2">Exercise Template Added Successfully</Typography>
-						</Box>
-            {isLoading ? (
-              <CircularProgress />
-            ) : (
-              step < 1 && <Button type="submit" disabled={isLoading}>Save and Continue</Button>
-            )}
+                    <Box mt={2} px={3}>
+				              {isLoading ? <CircularProgress /> : step < 4 ? <Button type="submit" disabled={isLoading} onClick={nextStepHandler}>Save and Continue</Button>: <></>}
+			              </Box>
           </Box>
-
         </Container>
       </Box>
     </Layout>

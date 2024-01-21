@@ -112,7 +112,7 @@ const ExerciseTemplatePage = () => {
 	useEffect(() => {
 		setLoading(true);
 		FetchManager.fetch({
-			url: `${TEMPLATES_URL}page=${page - 1}&limit=${limit}&query=${query}&bodyPart=${bodyPart}`,
+			url: `${TEMPLATES_URL}`,
 			success_cb: (res) => {
 				setTemplates(res.body);
 				setPageCount(res.pagination.pages)
@@ -149,7 +149,7 @@ const ExerciseTemplatePage = () => {
 							</Typography>
 						</Container>
 						<Container sx={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end' }}>
-							<Button sx={{ height: "1.2em" }} href='/templateform'>Add Template</Button>
+							<Button sx={{ height: "1.2em" }} onClick={addTemplate}>Add Template</Button>
 						</Container>
 
 					</Container>
