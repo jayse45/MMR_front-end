@@ -65,7 +65,7 @@ const TemplateCard = () =>{
 							18 mins
 						</Typography>
 						<Typography sx={{fontSize:'11px'}}>
-							Time
+							Time hi
 						</Typography>
 
 						</Container>
