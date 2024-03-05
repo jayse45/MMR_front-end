@@ -30,14 +30,18 @@ import EditExerciseTemplatesForm from "./EditExerciseTemplatesForm";
 import DeleteExerciseTemplatesForm from "./DeleteExerciseTemplatesForm";
 import ViewExerciseTemplatesForm from "./ViewExerciseTemplatesForm";
 import useAuth from "../../hooks/useAuth";
-import { getTimestamp } from "../../utils/utils";
+import {
+  getTimestamp,
+  getCreatorDetails,
+  getLastEditorDetails,
+} from "../../utils/utils";
 
 const EXERCISE_TEMPLATES_URL = UrlHelper.createApiUrlPath("/api/templates/");
 
 const AddExerciseTemplateForm = ({ success_cb }) => {
   const [step, setStep] = useState(0);
   const [loading, setLoading] = useState(false);
-  const { setOpenModal } = useAuth();
+  const { setOpenModal, getUser } = useAuth();
   const [modalContent, setModalContent] = useState("");
   const [actionRow, setActionRow] = useState("");
   const [bodyPart, setBodyPart] = useState("");
@@ -158,11 +162,23 @@ const AddExerciseTemplateForm = ({ success_cb }) => {
   };
 
   const handleTextSubmission = async (data) => {
-    console.log(data);
+    // console.log(data);
+    const { _id: user = "", role = "" } = getUser();
+    console.log(user, role, process.env.REACT_APP_HEALTH_PROFESSIONAL_ROLE);
     const payload = {
       ...data,
       timestamp: getTimestamp(),
+      thumbImage: {
+        key: "default-exercise-template.png",
+      },
+      healthProfessional:
+        role === process.env.REACT_APP_HEALTH_PROFESSIONAL_ROLE
+          ? user
+          : undefined,
+      creator: getCreatorDetails(role, user),
+      lastEditor: getLastEditorDetails(role, user),
     };
+    // console.log(JSON.stringify(payload));
     const res = await FetchManager.asyncFetchJSON({
       url: EXERCISE_TEMPLATES_URL,
       method: "POST",
@@ -170,7 +186,7 @@ const AddExerciseTemplateForm = ({ success_cb }) => {
       failure_cb: () => {
         setIsLoading(false);
         NotificationManager.notifyUser({
-          type: "warning",
+          type: "error",
           message: "Failed to add exercise template.",
         });
       },
