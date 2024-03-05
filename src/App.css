@@ -1,5 +1,1032 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons");
 .App {
   text-align: center;
+}
+.App .font-size-10 {
+  font-size: 10px;
+}
+
+.tox-statusbar__branding {
+  display: none !important;
+}
+
+#root {
+  width: 100%;
+  overflow-x: hidden;
+}
+
+.min-vh-70 {
+  min-height: 70vh;
+}
+
+.MuiInputLabel-outlined.MuiInputLabel-shrink {
+  transform: translate(15px, -1px) scale(0.75) !important;
+}
+
+.tox .tox-notification--in {
+  opacity: 0 !important;
+  display: none !important;
+}
+
+.contentArea {
+  min-height: 90vh;
+  background-color: #f5f5f5;
+  padding: 1em;
+}
+
+.m-h-vh-75 {
+  min-height: 75vh;
+}
+
+a {
+  text-decoration: none !important;
+}
+
+a.no-style {
+  color: unset;
+}
+
+a.no-style:hover {
+  color: unset;
+}
+
+a:hover {
+  text-decoration: none !important;
+  cursor: pointer;
+}
+
+.main-panel {
+  padding: 20px 30px;
+}
+
+.top-navbar {
+  display: block;
+  position: inherit;
+}
+
+.vh-75 {
+  height: 75vh;
+}
+
+.progress-bar-loader {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  width: 80%;
+  height: 100vh;
+  position: fixed;
+  top: 0px;
+  background: rgba(255, 255, 255, 0.5411764706);
+  z-index: 1;
+}
+
+.video-react .video-react-big-play-button {
+  top: 45% !important;
+  left: 45% !important;
+}
+
+@media (min-width: 576px) {
+  .exerciseCardModal .modal-dialog {
+    max-width: 80vw !important;
+  }
+  .exerciseCardModal-md .modal-dialog {
+    max-width: 60vw !important;
+  }
+}
+.SessionArea {
+  overflow-y: scroll;
+  overflow-x: hidden;
+  height: 70vh;
+}
+
+/* width */
+.SessionArea::-webkit-scrollbar {
+  width: 7px;
+}
+
+/* Track */
+.SessionArea::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey;
+  border-radius: 5px;
+}
+
+/* Handle */
+.SessionArea::-webkit-scrollbar-thumb {
+  background: #008f11;
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+.SessionArea::-webkit-scrollbar-thumb:hover {
+  background: #ff8800;
+}
+
+main.content {
+  min-height: 95vh;
+}
+
+.overflow-x-hidden {
+  overflow-x: hidden !important;
+}
+
+.videoChatComponent .container {
+  display: grid;
+  grid-template-columns: 7fr 3fr;
+}
+.videoChatComponent .myId {
+  margin-right: 5rem;
+  border-radius: 5px;
+  background: #c9d6ff;
+  /* fallback for old browsers */
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #e2e2e2, #c9d6ff);
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  padding: 2rem;
+  display: grid;
+  justify-content: center;
+  align-content: center;
+}
+.videoChatComponent .call-button {
+  text-align: center;
+  margin-top: 2rem;
+}
+.videoChatComponent .video-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-content: center;
+  align-content: center;
+  margin-top: 10rem;
+  margin-left: 10rem;
+}
+.videoChatComponent .caller {
+  text-align: center;
+  color: #fff;
+}
+.videoChatComponent body {
+  background: #4776e6;
+  /* fallback for old browsers */
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #8e54e9, #4776e6);
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.sidebar .logo img {
+  width: 80px;
+  height: 70px;
+  -o-object-fit: scale-down;
+     object-fit: scale-down;
+}
+.sidebar li > a.active {
+  background-color: #2cb027;
+  box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.1411764706), 0 7px 10px -5px rgba(156, 39, 176, 0.4);
+}
+.sidebar li > a.active p,
+.sidebar li > a.active i {
+  color: #fff;
+}
+.sidebar li > a:hover,
+.sidebar .nav li .dropdown-menu a:hover,
+.sidebar .nav li .dropdown-menu a:focus,
+.sidebar .nav li.active > [data-toggle=collapse] {
+  background-color: #49a44d !important;
+}
+.sidebar li > a:hover p,
+.sidebar li > a:hover i,
+.sidebar .nav li .dropdown-menu a:hover p,
+.sidebar .nav li .dropdown-menu a:hover i,
+.sidebar .nav li .dropdown-menu a:focus p,
+.sidebar .nav li .dropdown-menu a:focus i,
+.sidebar .nav li.active > [data-toggle=collapse] p,
+.sidebar .nav li.active > [data-toggle=collapse] i {
+  color: #fff !important;
+}
+.sidebar .nav li:hover > a,
+.sidebar .nav li .dropdown-menu a:hover,
+.sidebar .nav li .dropdown-menu a:focus,
+.sidebar .nav li.active > [data-toggle=collapse],
+.sidebar .nav li > a:focus {
+  background-color: #49a44d !important;
+}
+.sidebar .nav li:hover > a p,
+.sidebar .nav li:hover > a i,
+.sidebar .nav li .dropdown-menu a:hover p,
+.sidebar .nav li .dropdown-menu a:hover i,
+.sidebar .nav li .dropdown-menu a:focus p,
+.sidebar .nav li .dropdown-menu a:focus i,
+.sidebar .nav li.active > [data-toggle=collapse] p,
+.sidebar .nav li.active > [data-toggle=collapse] i,
+.sidebar .nav li > a:focus p,
+.sidebar .nav li > a:focus i {
+  color: #fff !important;
+}
+
+.local_div {
+  display: flex;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  z-index: -1;
+}
+
+.flexJustifyCenter {
+  display: flex;
+  justify-content: center;
+}
+
+.flexJustifyAround {
+  display: flex;
+  justify-content: space-around;
+}
+
+.remote_div {
+  width: 120px;
+  display: block;
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  z-index: 1;
+}
+
+.remote2_div {
+  width: 120px;
+  display: block;
+  position: absolute;
+  top: 95px;
+  right: 0px;
+  z-index: 1;
+}
+
+#video_container {
+  height: 80%;
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.remote_div video {
+  flex: 0 0 100%;
+  max-width: 100%;
+}
+
+.remote2_div video {
+  flex: 0 0 100%;
+  max-width: 100%;
+}
+
+.MuiTable-root .MuiTableHead-root th .MuiButton-label {
+  text-transform: capitalize;
+}
+.MuiTable-root thead td {
+  text-transform: capitalize;
+}
+
+.max-height-400 {
+  max-height: 400px !important;
+}
+
+.main-panel .main-content {
+  min-height: 80vh;
+}
+.main-panel .content {
+  margin-top: 0px !important;
+  padding-top: 0px !important;
+}
+
+.DashboardPage .subscription {
+  min-height: 200px;
+}
+.DashboardPage .mini-card {
+  max-width: 400px;
+}
+.DashboardPage .MuiGrid-spacing-xs-5 > .MuiGrid-item {
+  padding: 0px 20px;
+}
+.DashboardPage .stats {
+  width: 100%;
+}
+
+.LoginPage,
+.AuthPage {
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  background-color: rgba(238, 238, 238, 0.1333333333);
+  background-image: url(./static/img/loginbackground.jpeg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+  align-items: center;
+  display: flex;
+}
+.LoginPage .overlay,
+.AuthPage .overlay {
+  width: 100%;
+  height: 100%;
+  background-color: chartreuse;
+  background-image: linear-gradient(#39c6bd, #2eac69);
+  opacity: 0.9;
+}
+.LoginPage main,
+.AuthPage main {
+  background-color: #ffffff;
+  padding: 0.5em 2em;
+  height: 100%;
+  position: inherit;
+  z-index: 5;
+  min-width: 300px;
+  max-width: 400px;
+}
+.LoginPage main .MuiButton-label,
+.AuthPage main .MuiButton-label {
+  color: #ffffff;
+}
+.LoginPage main a,
+.AuthPage main a {
+  font-size: 0.8em;
+}
+
+.SubscriptionPage {
+  width: 100%;
+  background-color: #ffffff;
+  /* .MuiPaper-root {
+  	background-color: unset;
+  	width: 400px;
+  	display: flex;
+  } */
+  /* ---------------------------------------------------------------- */
+  /* 02.Typography                                                  
+       /* ---------------------------------------------------------------- */
+  /* ---------------------------------------------------------------- */
+  /* 03.Helper Class                                                  
+       /* ---------------------------------------------------------------- */
+  /* ---------------------------------------------------------------- */
+  /* 04.Buttons                                                   
+       /* ---------------------------------------------------------------- */
+  /* ---------------------------------------------------------------- */
+  /* 05.Pricing                           
+       /* ---------------------------------------------------------------- */
+  /* ---------------------------------------------------------------- */
+  /* Responsive Media Query
+        * Medium devices (tablets, less than 992px)
+       /* ---------------------------------------------------------------- */
+  /* ---------------------------------------------------------------- */
+  /* Responsive Media Query
+        * Small devices (landscape phones, less than 768px)
+       /* ---------------------------------------------------------------- */
+  /* ---------------------------------------------------------------- */
+  /* Responsive Media Query
+       /* Size reduced because it does not fit on this device
+        * Extra small devices (Iphone 5, less than 320px)
+       /* ---------------------------------------------------------------- */
+  /* ---------------------------------------------------------------- */
+  /* 06.Footer                                                   
+       /* ---------------------------------------------------------------- */
+}
+.SubscriptionPage .subscriptionTabContainer {
+  display: flex;
+  justify-content: space-evenly;
+}
+.SubscriptionPage .MuiTabs-flexContainer {
+  display: flex;
+  justify-content: space-around;
+}
+.SubscriptionPage .MuiPaper-elevation4 {
+  box-shadow: unset;
+}
+.SubscriptionPage .container {
+  background-color: #ffffff;
+  padding: 0.5em 2em;
+  height: auto;
+  position: inherit;
+  border-radius: 1em;
+  z-index: 5;
+}
+.SubscriptionPage * {
+  margin: 0;
+  padding: 0;
+}
+.SubscriptionPage body,
+.SubscriptionPage html {
+  font-size: 16px;
+  font-family: "Roboto-Regular", sans-serif;
+  font-weight: 400;
+  color: #677294;
+}
+.SubscriptionPage .MuiModal-root {
+  -webkit-backdrop-filter: blur(5px);
+          backdrop-filter: blur(5px);
+}
+.SubscriptionPage a:link,
+.SubscriptionPage a:hover,
+.SubscriptionPage a:active,
+.SubscriptionPage a:visited {
+  text-decoration: none;
+  color: #677294;
+}
+.SubscriptionPage ul,
+.SubscriptionPage ol {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+.SubscriptionPage textarea,
+.SubscriptionPage textarea:focus,
+.SubscriptionPage input,
+.SubscriptionPage input:focus,
+.SubscriptionPage button,
+.SubscriptionPage button:focus {
+  outline: none;
+  resize: inherit;
+}
+.SubscriptionPage h1,
+.SubscriptionPage h2,
+.SubscriptionPage h3,
+.SubscriptionPage h4,
+.SubscriptionPage h5,
+.SubscriptionPage h6 {
+  font-family: "Poppins-Bold", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+  margin: 0;
+  color: #000;
+  line-height: 1.3;
+  text-transform: capitalize;
+}
+.SubscriptionPage h1,
+.SubscriptionPage .h1 {
+  font-size: 55px;
+}
+.SubscriptionPage h2,
+.SubscriptionPage .h2 {
+  font-size: 42px;
+}
+.SubscriptionPage h3,
+.SubscriptionPage .h3 {
+  font-size: 44px;
+}
+.SubscriptionPage h4,
+.SubscriptionPage .h4 {
+  font-size: 22px;
+}
+.SubscriptionPage h5,
+.SubscriptionPage .h5 {
+  font-size: 18px;
+}
+.SubscriptionPage h6,
+.SubscriptionPage .h6 {
+  font-size: 16px;
+}
+.SubscriptionPage p {
+  color: #677294;
+  margin: 0;
+  line-height: 28px;
+}
+.SubscriptionPage .section {
+  padding: 5px 0;
+}
+.SubscriptionPage .section-heading .section-title {
+  position: relative;
+  text-align: center;
+  padding-bottom: 20px;
+  margin-bottom: 50px;
+}
+.SubscriptionPage .section-heading .section-title:after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 50px;
+  height: 4px;
+  background: #26c281;
+  transform: translateX(-50%);
+}
+.SubscriptionPage .pb-minus-70 {
+  padding-bottom: 70px;
+}
+.SubscriptionPage .default-button {
+  border-radius: 5px;
+  display: inline-block;
+  background-color: #266e23;
+  border: none;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  padding: 20px 40px;
+  transition: all 0.25s ease;
+  color: #fff;
+}
+.SubscriptionPage .default-button:after {
+  display: none;
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  transition: all 0.25s ease;
+  background-color: rgba(0, 0, 0, 0.2470588235);
+  width: 100px;
+  height: 100px;
+  margin-top: -50px;
+  margin-left: -50px;
+  top: 50%;
+  left: 50%;
+  animation: ripple 1s;
+  opacity: 0;
+}
+.SubscriptionPage .default-button:focus:not(:active)::after {
+  display: block;
+}
+@keyframes ripple {
+  from {
+    opacity: 1;
+    transform: scale(0);
+  }
+  to {
+    opacity: 0;
+    transform: scale(10);
+  }
+}
+.SubscriptionPage .price-toggle-wrap {
+  text-align: center;
+  display: inline-block;
+  margin: 0 auto 60px auto;
+  padding: 10px;
+  border-radius: 100px;
+  box-shadow: 0 10px 28px 0 rgba(61, 82, 96, 0.1490196078);
+}
+.SubscriptionPage .price-toggle-wrap a {
+  padding: 16px 40px;
+  float: left;
+  border-radius: 100px;
+  margin: 0 10px;
+  background-position: center;
+  position: relative;
+  overflow: hidden;
+  background-color: #e7fbf4;
+  color: #26c281;
+  transition: all 0.25s linear;
+}
+.SubscriptionPage .price-toggle-wrap a.active {
+  background-position: center;
+  background: #26c281;
+  color: #fff;
+}
+.SubscriptionPage .pricing-tab-toggle-content {
+  display: none;
+}
+.SubscriptionPage .pricing-tab-toggle-content.active {
+  display: block;
+}
+.SubscriptionPage .price-table {
+  border-radius: 50px;
+  text-align: center;
+  background-color: #f8f8ff;
+  padding: 30px;
+  transition: all 0.25s linear;
+  box-shadow: 1px 1px 5px 1px rgba(61, 82, 96, 0.1490196078);
+}
+.SubscriptionPage .price-table ul {
+  text-align: start;
+}
+.SubscriptionPage .price-table ul li {
+  border-bottom: 1px solid rgba(163, 175, 165, 0.7333333333);
+  margin: 10px 0px;
+  text-align: center;
+}
+.SubscriptionPage .price-table ul li .recommendation-text {
+  background-color: #2cb027;
+  color: #ffffff;
+  padding: 0.5em;
+  border-radius: 0.25em;
+}
+.SubscriptionPage .price-table:hover {
+  transform: translateY(-5px);
+  box-shadow: 1px 1px 10px 1px rgba(61, 82, 96, 0.1490196078);
+}
+.SubscriptionPage .price-table .price-icon {
+  display: inline-block;
+}
+.SubscriptionPage .price-table .price-icon svg {
+  display: inline-block;
+  height: 100px;
+  width: 100px;
+  text-align: center;
+  font-size: 40px;
+  line-height: 100px;
+  border-radius: 50%;
+  transition: all 0.25s ease;
+  background: #26c281;
+  color: #fff;
+}
+.SubscriptionPage .price-table .price-value {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.SubscriptionPage .price-table .price-value span {
+  font-size: 1rem;
+}
+.SubscriptionPage .price-table .price-value b {
+  font-size: 3.2rem;
+  font-weight: 700;
+  font-family: "Poppins-Bold", sans-serif;
+  color: #050626;
+}
+.SubscriptionPage .price-table .price-text {
+  margin-bottom: 30px;
+}
+.SubscriptionPage .price-table .price-text span {
+  text-align: center;
+  border-radius: 100px;
+  display: inline-block;
+  padding: 11px 40px;
+}
+.SubscriptionPage .price-table .price-list li {
+  margin-top: 15px;
+}
+.SubscriptionPage .price-table .price-list li:first-child {
+  margin-top: 0;
+}
+.SubscriptionPage .price-table .price-footer {
+  margin-top: 30px;
+}
+.SubscriptionPage .price-table .price-footer .price-block-btn {
+  display: block;
+  border-radius: 50px;
+  color: #fff;
+}
+@media only screen and (max-width: 991.98px) {
+  .SubscriptionPage .price-table-resp:nth-child(3) {
+    margin-top: 30px;
+  }
+}
+@media only screen and (max-width: 767.98px) {
+  .SubscriptionPage .price-table-resp {
+    margin-top: 30px;
+  }
+  .SubscriptionPage .price-table-resp:first-child {
+    margin-top: 0;
+  }
+}
+@media only screen and (max-width: 320px) {
+  .SubscriptionPage .price-toggle-wrap a {
+    padding: 16px 25px;
+  }
+}
+.SubscriptionPage .footer {
+  background: #050626;
+}
+.SubscriptionPage .footer .copyright-wrap {
+  padding: 30px;
+}
+.SubscriptionPage .footer .copyright-wrap .copyright-inner .copyright-text {
+  text-align: center;
+  color: #fff;
+  opacity: 0.85;
+}
+
+.ChatBox {
+  background: #f0f1f2;
+  font: 12px "Open Sans", sans-serif;
+}
+.ChatBox * {
+  margin: 0px;
+  padding: 0px;
+}
+.ChatBox * #friends {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.ChatBox #view-code {
+  color: #89a2b5;
+  opacity: 0.7;
+  font-size: 14px;
+  text-transform: uppercase;
+  font-weight: 700;
+  text-decoration: none;
+  position: absolute;
+  top: 660px;
+  left: 50%;
+  margin-left: -50px;
+  z-index: 200;
+}
+.ChatBox #view-code:hover {
+  opacity: 1;
+}
+.ChatBox #topMenu {
+  height: 69px;
+  width: 290px;
+  border-bottom: 1px solid #d8dfe3;
+}
+.ChatBox #topMenu span {
+  float: left;
+  width: 96px;
+  height: 70px;
+  background: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/245657/top-menu.png") -3px -118px no-repeat;
+}
+.ChatBox #topMenu span.friends {
+  margin-bottom: -1px;
+}
+.ChatBox #topMenu span.chats {
+  background-position: -95px 25px;
+  cursor: pointer;
+}
+.ChatBox #topMenu span.chats:hover {
+  background-position: -95px -46px;
+  cursor: pointer;
+}
+.ChatBox #topMenu span.history {
+  background-position: -190px 24px;
+  cursor: pointer;
+}
+.ChatBox #topMenu span.history:hover {
+  background-position: -190px -47px;
+  cursor: pointer;
+}
+.ChatBox .friend {
+  height: 70px;
+  border-bottom: 1px solid #e7ebee;
+  position: relative;
+}
+.ChatBox .friend:hover {
+  background: #f1f4f6;
+  cursor: pointer;
+}
+.ChatBox .friend img {
+  width: 40px;
+  border-radius: 50%;
+  margin: 15px;
+  float: left;
+}
+.ChatBox .floatingImg {
+  width: 40px;
+  border-radius: 50%;
+  position: absolute;
+  top: 0;
+  left: 12px;
+  border: 3px solid #fff;
+}
+.ChatBox .friend p {
+  padding: 15px 0 0 0;
+  float: left;
+  width: 220px;
+}
+.ChatBox .friend p strong {
+  font-weight: 600;
+  font-size: 15px;
+  color: #597a96;
+}
+.ChatBox .friend p span {
+  font-size: 13px;
+  font-weight: 400;
+  color: #aab8c2;
+}
+.ChatBox .friend .status {
+  background: #26c281;
+  border-radius: 50%;
+  width: 9px;
+  height: 9px;
+  position: absolute;
+  top: 31px;
+  right: 17px;
+}
+.ChatBox .friend .status.away {
+  background: #ffce54;
+}
+.ChatBox .friend .status.inactive {
+  background: #eaeef0;
+}
+.ChatBox #search {
+  background: #e3e9ed url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/245657/search.png") -11px 0 no-repeat;
+  height: 60px;
+  width: 290px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+.ChatBox #searchField {
+  background: #e3e9ed;
+  margin: 21px 0 0 55px;
+  border: none;
+  padding: 0;
+  font-size: 14px;
+  font-family: "Open Sans", sans-serif;
+  font-weight: 400px;
+  color: #8198ac;
+}
+.ChatBox #searchField:focus {
+  outline: 0;
+}
+.ChatBox #chatView {
+  width: 290px;
+  height: 484px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: none;
+  background: #fff;
+}
+.ChatBox #profile {
+  height: 153px;
+  overflow: hidden;
+  text-align: center;
+  color: #fff;
+}
+.ChatBox .p1 #profile {
+  background: #fff url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/245657/timeline1.png") 0 0 no-repeat;
+}
+.ChatBox #profile .avatar {
+  width: 68px;
+  border: 3px solid #fff;
+  margin: 23px 0 0;
+  border-radius: 50%;
+}
+.ChatBox #profile p {
+  font-weight: 600;
+  font-size: 15px;
+  margin: 118px 0 -1px;
+  opacity: 0;
+  transition: all 200ms cubic-bezier(0, 0.995, 0.99, 1);
+}
+.ChatBox #profile p.animate {
+  margin-top: 97px;
+  opacity: 1;
+  transition: all 200ms cubic-bezier(0, 0.995, 0.99, 1);
+}
+.ChatBox #profile span {
+  font-weight: 400;
+  font-size: 11px;
+}
+.ChatBox #chat-messages {
+  opacity: 0;
+  margin-top: 30px;
+  width: 290px;
+  height: 270px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  padding-right: 20px;
+  transition: all 200ms cubic-bezier(0, 0.995, 0.99, 1);
+}
+.ChatBox #chat-messages.animate {
+  opacity: 1;
+  margin-top: 0;
+}
+.ChatBox #chat-messages label {
+  color: #aab8c2;
+  font-weight: 600;
+  font-size: 12px;
+  text-align: center;
+  margin: 15px 0;
+  width: 290px;
+  display: block;
+}
+.ChatBox #chat-messages div.message {
+  padding: 0 0 30px 58px;
+  clear: both;
+  margin-bottom: 45px;
+}
+.ChatBox #chat-messages div.message.right {
+  padding: 0 58px 30px 0;
+  margin-right: -19px;
+  margin-left: 19px;
+}
+.ChatBox #chat-messages .message img {
+  float: left;
+  margin-left: -38px;
+  border-radius: 50%;
+  width: 30px;
+  margin-top: 12px;
+}
+.ChatBox #chat-messages div.message.right img {
+  float: right;
+  margin-left: 0;
+  margin-right: -38px;
+}
+.ChatBox .message .bubble {
+  background: #f0f4f7;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 12px 13px;
+  border-radius: 5px 5px 5px 0px;
+  color: #8495a3;
+  position: relative;
+  float: left;
+}
+.ChatBox #chat-messages div.message.right .bubble {
+  float: right;
+  border-radius: 5px 5px 0px 5px;
+}
+.ChatBox .bubble .corner {
+  background: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/245657/bubble-corner.png") 0 0 no-repeat;
+  position: absolute;
+  width: 7px;
+  height: 7px;
+  left: -5px;
+  bottom: 0;
+}
+.ChatBox div.message.right .corner {
+  background: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/245657/bubble-cornerR.png") 0 0 no-repeat;
+  left: auto;
+  right: -5px;
+}
+.ChatBox .bubble span {
+  color: #aab8c2;
+  font-size: 11px;
+  position: absolute;
+  right: 0;
+  bottom: -22px;
+}
+.ChatBox #sendMessage {
+  height: 60px;
+  border-top: 1px solid #e7ebee;
+  position: absolute;
+  bottom: 0;
+  right: 0px;
+  width: 290px;
+  background: #fff;
+  padding-bottom: 50px;
+}
+.ChatBox #sendMessage input {
+  background: #fff;
+  margin: 21px 0 0 21px;
+  border: none;
+  padding: 0;
+  font-size: 14px;
+  font-family: "Open Sans", sans-serif;
+  font-weight: 400px;
+  color: #aab8c2;
+}
+.ChatBox #sendMessage input:focus {
+  outline: 0;
+}
+.ChatBox #sendMessage button {
+  background: #fff url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/245657/send.png") 0 -41px no-repeat;
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  right: 15px;
+  top: 23px;
+  border: none;
+}
+.ChatBox #sendMessage button:hover {
+  cursor: pointer;
+  background-position: 0 0;
+}
+.ChatBox #sendMessage button:focus {
+  outline: 0;
+}
+.ChatBox #close {
+  position: absolute;
+  top: 8px;
+  opacity: 0.8;
+  right: 10px;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+.ChatBox #close:hover {
+  opacity: 1;
+}
+.ChatBox .cx,
+.ChatBox .cy {
+  background: #fff;
+  position: absolute;
+  width: 0px;
+  top: 15px;
+  right: 15px;
+  height: 3px;
+  transition: all 250ms ease-in-out;
+}
+.ChatBox .cx.s1,
+.ChatBox .cy.s1 {
+  right: 0;
+  width: 20px;
+  transition: all 100ms ease-out;
+}
+.ChatBox .cy.s2 {
+  transform: rotate(50deg);
+  transition: all 100ms ease-out;
+}
+.ChatBox .cy.s3 {
+  transform: rotate(45deg);
+  transition: all 100ms ease-out;
+}
+.ChatBox .cx.s1 {
+  right: 0;
+  width: 20px;
+  transition: all 100ms ease-out;
+}
+.ChatBox .cx.s2 {
+  transform: rotate(140deg);
+  transition: all 100ms ease-out;
+}
+.ChatBox .cx.s3 {
+  transform: rotate(135deg);
+  transition: all 100ms ease-out;
+}
+.ChatBox #chatView,
+.ChatBox #sendMessage {
+  overflow: hidden;
+  border-radius: 6px;
 }
 
 .App-logo {
@@ -7,27 +1034,41 @@
   pointer-events: none;
 }
 
+.view-container {
+  padding-top: 64px;
+}
+
+.modal-container {
+  position: fixed;
+  transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1);
+  overflow: hidden;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  background: white;
+  z-index: 1200;
+}
+.modal-container:empty {
+  display: none;
+}
+.modal-container.modal-enter-active {
+  top: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  left: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  overflow: auto;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
   }
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
@@ -36,3 +1077,46 @@
     transform: rotate(360deg);
   }
 }
+.overlay {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  justify-items: center;
+  width: 100vw;
+  height: 100vh;
+  background-color: chartreuse;
+  background-image: linear-gradient(#39c6bd, #2eac69);
+  opacity: 0.9;
+}
+
+.RegistrationPage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  justify-items: center;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  background-color: rgba(238, 238, 238, 0.1333333333);
+  background-image: url(./static/img/loginbackground.jpeg);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.RegistrationPage main {
+  background-color: #ffffff;
+  padding: 0.5em 2em;
+  height: auto;
+  border-radius: 15px;
+  z-index: 5;
+  min-width: 500px;
+  max-width: 650px;
+}
+.RegistrationPage main .MuiButton-label {
+  color: #ffffff;
+}
+.RegistrationPage main a {
+  font-size: 0.8em;
+}/*# sourceMappingURL=App.css.map */
