@@ -35,6 +35,7 @@ import {
   getCreatorDetails,
   getLastEditorDetails,
 } from "../../utils/utils";
+import { useNavigate } from "react-router-dom";
 
 const EXERCISE_TEMPLATES_URL = UrlHelper.createApiUrlPath("/api/templates/");
 
@@ -64,6 +65,7 @@ const AddExerciseTemplateForm = ({ success_cb }) => {
     MAIN: "main",
     COOLDOWN: "cooldown",
   };
+  const navigate = useNavigate();
 
   // setting up React Hook Form
   const { watch, register, handleSubmit, control, getValues } = useForm({
@@ -74,6 +76,90 @@ const AddExerciseTemplateForm = ({ success_cb }) => {
       main: [],
       cooldown: [],
     },
+
+    /* defaultValues: {
+      title: "Test Template",
+      description: "This is a test template",
+      warmup: [
+        {
+          exercise: "648b351e15ae9a575003f3b3",
+          title: "CALF RAISES",
+          sets: "2",
+          reps: "6",
+          time: "15",
+          distance: "",
+          intensity: "Hard",
+          note: "If you feel pain, stop immediately",
+        },
+        {
+          exercise: "648b3e5cad57c0c935550eb7",
+          title: "SHOULDER RETRACTION EXERCISE ",
+          sets: "1",
+          reps: "2",
+          time: "10",
+          distance: "100",
+          intensity: "Medium",
+          note: "",
+        },
+      ],
+      main: [
+        {
+          exercise: "648b5ef676bbe5ca05e4d347",
+          title: "ULNAR NERVE STRETCH",
+          sets: "3",
+          reps: "2",
+          time: "10",
+          distance: "",
+          intensity: "Easy",
+          note: "",
+        },
+        {
+          exercise: "648b351e15ae9a575003f3b3",
+          title: "CALF RAISES",
+          sets: "3",
+          reps: "1",
+          time: "12",
+          distance: "",
+          intensity: "Hard",
+          note: "",
+        },
+      ],
+      cooldown: [
+        {
+          exercise: "648b528bd146c9b86af6b377",
+          title: "NECK RETRACTION ",
+          sets: "3",
+          reps: "5",
+          time: "10",
+          distance: "",
+          intensity: "Easy",
+          note: "",
+        },
+        {
+          exercise: "648b5ef676bbe5ca05e4d347",
+          title: "ULNAR NERVE STRETCH",
+          sets: "1",
+          reps: "1",
+          time: "5",
+          distance: "",
+          intensity: "Easy",
+          note: "",
+        },
+      ],
+      timestamp: 1709650745363,
+      thumbImage: {
+        key: "default-exercise-template.png",
+      },
+      healthProfessional: "65506c52dc1f2725963ea7f1",
+      creator: {
+        userRole: "pro",
+        user: "65506c52dc1f2725963ea7f1",
+      },
+      lastEditor: {
+        userRole: "pro",
+        user: "65506c52dc1f2725963ea7f1",
+      },
+    }, */
   });
 
   // setting up state management for warmup exercises
@@ -178,29 +264,32 @@ const AddExerciseTemplateForm = ({ success_cb }) => {
       creator: getCreatorDetails(role, user),
       lastEditor: getLastEditorDetails(role, user),
     };
+
+    navigate("/created-template", { state: payload });
     // console.log(JSON.stringify(payload));
-    const res = await FetchManager.asyncFetchJSON({
-      url: EXERCISE_TEMPLATES_URL,
-      method: "POST",
-      body: JSON.stringify(payload),
-      failure_cb: () => {
-        setIsLoading(false);
-        NotificationManager.notifyUser({
-          type: "error",
-          message: "Failed to add exercise template.",
-        });
-      },
-    });
-    if (res?.status === 201) {
-      NotificationManager.notifyUser({
-        type: "success",
-        message: "Exercise template created successfully.",
-      });
-      setExerciseTemplate(res.body);
-      return true;
-    } else {
-      return false;
-    }
+    // const res = await FetchManager.asyncFetchJSON({
+    //   url: EXERCISE_TEMPLATES_URL,
+    //   method: "POST",
+    //   body: JSON.stringify(payload),
+    //   failure_cb: (err) => {
+    //     console.log(err);
+    //     setIsLoading(false);
+    //     NotificationManager.notifyUser({
+    //       type: "error",
+    //       message: "Failed to add exercise template.",
+    //     });
+    //   },
+    // });
+    // if (res?.status === 201) {
+    //   NotificationManager.notifyUser({
+    //     type: "success",
+    //     message: "Exercise template created successfully.",
+    //   });
+    //   setExerciseTemplate(res.body);
+    //   return true;
+    // } else {
+    //   return false;
+    // }
   };
   //This is to handle the moving from step to step
   const nextStepHandler = async (evt) => {
@@ -520,7 +609,7 @@ const AddExerciseTemplateForm = ({ success_cb }) => {
           {/* <DevTool control={control} /> */}
         </Container>
       </Box>
-      <pre>{JSON.stringify(watch(), null, 4)}</pre>
+      {/* <pre>{JSON.stringify(watch(), null, 4)}</pre> */}
     </Layout>
   );
 };

@@ -61,7 +61,7 @@ const ExercisePrescription = ({
     <Box sx={{ marginBottom: "1em" }}>
       {exercises.map((exercise, index) => {
         return (
-          <Paper key={exercise._id} sx={{ p: "0.5em", m: "0.3em" }}>
+          <Paper key={exercise.exercise} sx={{ p: "0.5em", m: "0.3em" }}>
             <ExerciseInstructionForm
               exerciseData={exercise}
               formRegister={formRegister}

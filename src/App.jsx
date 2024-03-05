@@ -25,6 +25,7 @@ import ErrorBoundary from "./context/ErrorBoundary";
 import StorageManager from "./utils/StorageManager";
 import VerifyEmailBlock from "./components/VerifyEmailBlock";
 import VerifyEmailPage from "./components/VerifyEmailPage";
+import ViewCreatedTemplate from "./components/ExerciseTemplate/ViewCreatedTemplate";
 import CONFIG from "./config";
 
 function App() {
@@ -81,6 +82,11 @@ function App() {
               <Route
                 path="pay_subscription/confirmation"
                 element={<PaymentConfirmation />}
+              />
+              <Route
+                path="/created-template"
+                exact
+                element={<ViewCreatedTemplate />}
               />
               <Route path="/*" element={<RequireAuth allowedRoles={ROLES} />}>
                 {status || user?.role === USER_ROLES.ADMIN ? (
